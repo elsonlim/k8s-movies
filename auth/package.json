@@ -6,10 +6,11 @@
   "scripts": {
     "test": "jest --watchAll --runInBand=false",
     "testc": "jest --watchAll=false --runInBand=false --coverage",
-    "start": "ts-node-dev src/index.ts --watch",
+    "start": "ts-node-dev --poll src/index.ts",
     "docker:build": "docker build -t elsonlim/movies-auth .",
     "docker:run": "docker run -it -v /app/node_modules -v $(pwd):/app -p 5000:5000 elsonlim/movies-auth",
-    "docker:test": "docker run -it -v /app/node_modules -v $(pwd):/app elsonlim/movies-auth npm run test"
+    "docker:test": "docker run -it -v /app/node_modules -v $(pwd):/app elsonlim/movies-auth npm run test",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "keywords": [],
   "author": "",
@@ -22,10 +23,13 @@
     "supertest": "^4.0.2",
     "ts-jest": "^26.1.2",
     "ts-node-dev": "^1.0.0-pre.51",
+    "tslint": "^6.1.2",
     "typescript": "^3.9.6"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "express-validator": "^6.6.0"
   }
 }

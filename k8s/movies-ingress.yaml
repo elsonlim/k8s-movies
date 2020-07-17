@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: movies-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - host: movies.com
+      http:
+        paths:
+          - path: /api/auth(/|$)(.*)
+            backend:
+              serviceName: auth-service
+              servicePort: 5000
